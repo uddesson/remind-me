@@ -12,7 +12,6 @@ export default class Header extends Component {
   toggleModal = () => {
     const { triggerToggleModal, showModal } = this.props;
     triggerToggleModal();
-    console.log(showModal)
   }
   render() {
     return (
