@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, TextInput, TouchableOpacity, DatePickerIOS, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, DatePickerIOS, StyleSheet, AsyncStorage } from 'react-native';
 import { Paragraph } from '../components/common/TextFormats';
+
 
 const mapStateToProps = state => ({ showModal: state.reminders.showModal });
 const mapDispatchToProps = dispatch => ({ triggerToggleModal: () => dispatch(toggleModal()) });
-
 @connect(mapStateToProps, mapDispatchToProps)
 export default class AddReminder extends Component {
 
@@ -15,29 +15,37 @@ export default class AddReminder extends Component {
     id: null,
   }
 
+  storeReminder = (id, reminder) => {
+    AsyncStorage.setItem(`${id}`, JSON.stringify(reminder), () => {});
+  }
+
   setDate = (newDate) => {
     this.setState({time: newDate})
   }
 
+  getRandomId = () => {
+    let number = Math.floor(Math.random() * (1000 - 0) ) + 0;
+    return number.toString()
+  }
+
+  createReminder = () => {
+    let id = this.getRandomId();
+    this.setState({id})
+
+    let reminder = {
+      time: this.state.time,
+      text: this.state.text,
+      id,
+    }
+
+    /* TODO: Check if reminder is legit (date has not passed, id is set, text is set etc),
+    then add reminder object to array of reminders (redux) */
+    // console.log(reminder)
+    this.storeReminder(id, reminder)
+  }
+
   render(){
-    getRandomId = () => {
-      return Math.floor(Math.random() * (1000 - 0) ) + 0;
-    }
 
-    createReminder = () => {
-      let id = getRandomId();
-      this.setState({id})
-
-      let reminder = {
-        time: this.state.time,
-        text: this.state.text,
-        id: id,
-      }
-
-      /* TODO: Check if reminder is legit (date has not passed, id is set, text is set etc),
-      then add reminder object to array of reminders (redux) */
-      console.log(reminder)
-    }
 
     return(
       <View style={styles.container}>
@@ -54,7 +62,7 @@ export default class AddReminder extends Component {
           onDateChange={this.setDate}
         />
 
-        <TouchableOpacity style={styles.button} onPress={() => {createReminder()}}>
+        <TouchableOpacity style={styles.button} onPress={() => {this.createReminder()}}>
           <Paragraph style={{color: '#fff'}}>
             Do reminder stuff.
           </Paragraph>
