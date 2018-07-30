@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from "react-native-modal";
-import { toggleModal } from '../../redux/reminders';
-import AddReminder from '../AddReminder';
+import { toggleModal } from '../redux/reminders';
+import AddReminder from './AddReminder';
 
 const mapStateToProps = state => ({ showModal: state.reminders.showModal });
 const mapDispatchToProps = dispatch => ({ triggerToggleModal: () => dispatch(toggleModal()) });
