@@ -4,7 +4,6 @@ import { View, TextInput, TouchableOpacity, DatePickerIOS, StyleSheet, AsyncStor
 import { toggleModal } from '../redux/reminders';
 import { Paragraph } from '../components/common/TextFormats';
 
-
 const mapStateToProps = state => ({ showModal: state.reminders.showModal });
 const mapDispatchToProps = dispatch => ({ triggerToggleModal: () => dispatch(toggleModal()) });
 @connect(mapStateToProps, mapDispatchToProps)
@@ -46,8 +45,6 @@ export default class AddReminder extends Component {
   }
 
   render(){
-
-
     return(
       <View style={styles.container}>
         <TextInput

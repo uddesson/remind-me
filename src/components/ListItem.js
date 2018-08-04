@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-import { View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import moment from 'moment';
 import { Paragraph, SmallPrint } from './common/TextFormats';
 import { DeleteButton } from './common/Buttons';
 
 export default class ListItem extends Component {
-  render(){
+  render() {
     const { text, time } = this.props;
-    console.log(time)
-    return(
+    return (
       <View style={styles.container}>
 
         <View style={[styles.col_lg, styles.innerContainer]}>
-          <Paragraph>{text}</Paragraph>
-          <SmallPrint>{moment(time).calendar()}</SmallPrint>
+          <Paragraph>
+            {text}
+          </Paragraph>
+          <SmallPrint>
+            {moment(time).calendar()}
+          </SmallPrint>
         </View>
 
         <View style={[styles.col_sm, styles.innerContainer]}>
@@ -21,7 +24,7 @@ export default class ListItem extends Component {
         </View>
 
       </View>
-    )
+    );
   }
 }
 
@@ -45,5 +48,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
     width: '20%',
-  }
-})
+  },
+});
