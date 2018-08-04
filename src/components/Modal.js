@@ -10,13 +10,15 @@ const mapDispatchToProps = dispatch => ({ triggerToggleModal: () => dispatch(tog
 @connect(mapStateToProps, mapDispatchToProps)
 export default class AddModal extends Component {
   render(){
-    const { showModal } = this.props;
+    const { showModal, triggerToggleModal } = this.props;
+
     return(
       <Modal
         isVisible={showModal}
         backdropOpacity={0.5}
         backdropColor='black'
         avoidKeyboard={true}
+        onBackdropPress={() => triggerToggleModal()}
       >
         <AddReminder />
       </Modal>
