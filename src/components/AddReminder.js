@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, TextInput, TouchableOpacity, DatePickerIOS, StyleSheet, AsyncStorage } from 'react-native';
+import { toggleModal } from '../redux/reminders';
 import { Paragraph } from '../components/common/TextFormats';
 
 
