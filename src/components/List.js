@@ -1,53 +1,66 @@
 import React, { Component } from 'react';
-import { View, FlatList, StyleSheet, AsyncStorage } from 'react-native';
-import { Paragraph } from './common/TextFormats';
+// import { connect } from 'react-redux';
+import { ScrollView, FlatList, StyleSheet, AsyncStorage } from 'react-native';
+// import { loadReminders } from '../redux/reminders';
+import ListItem from './ListItem';
 
+/**
+* TODO: Implement redux
+* const mapStateToProps = state => ({ remindersInState: state.reminders.reminders });
+* const mapDispatchToProps = dispatch => ({ triggerLoadReminders: () => dispatch(loadReminders(reminders)) });
+* @connect(mapStateToProps, mapDispatchToProps)
+*/
 
 export default class List extends Component {
   state = {
     reminders: null,
   }
 
-
-  async loadReminders() {
+  async loadKeys() {
     // TODO: Error handling
     await AsyncStorage.getAllKeys()
     .then((keys) => {
-      this.setReminders(keys);
+      this.loadReminders(keys);
     })
   }
 
-  async setReminders(keys) {
+  async loadReminders(keys) {
     let reminders = [];
     await AsyncStorage.multiGet(keys)
     .then((result) => {
       result.map((result, i, items) => {
         let singleReminder = JSON.parse(items[i][1])
         reminders.push(singleReminder)
-      });
+      })
     })
-    this.setState({reminders})
+    .then(() => {this.setState({reminders})})
+    .catch(error => {
+      console.log(error)
+    });
   }
 
   componentDidMount(){
-    this.loadReminders();
+    this.loadKeys();
   }
 
   render() {
     return(
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <FlatList
           data={this.state.reminders}
           keyExtractor={item => item.id}
-          renderItem={({item}) => <Paragraph>{`${item.text} at ${item.time}`}</Paragraph>}
+          renderItem={({item}) =>
+            <ListItem text={item.text} time={item.time} />
+          }
         />
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    paddingTop: 10,
+    height: '100%',
   },
 })
