@@ -1,23 +1,17 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-export const HeaderOne = ({ style, ...props }) => {
-  return (
-    <Text style={[styles.h1, style]} {...props} />
-  );
-};
+export const HeaderOne = ({ style, ...props }) => (
+  <Text style={[styles.h1, style]} {...props} />
+);
 
-export const Paragraph = ({ style, ...props }) => {
-  return (
-    <Text style={[styles.paragraph, style]} {...props} />
-  );
-};
+export const Paragraph = ({ style, ...props }) => (
+  <Text style={[styles.paragraph, style]} {...props} />
+);
 
-export const SmallPrint = ({ style, ...props }) => {
-  return (
-    <Text style={[styles.smallprint, style]} {...props} />
-  );
-};
+export const SmallPrint = ({ style, ...props }) => (
+  <Text style={[styles.smallprint, style]} {...props} />
+);
 
 const styles = StyleSheet.create({
   h1: {
