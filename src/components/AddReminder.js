@@ -58,6 +58,7 @@ export default class AddReminder extends Component {
         />
 
         <DatePickerIOS
+          locale={'sv'}
           minimumDate={new Date()}
           minuteInterval={1}
           date={this.state.time}
