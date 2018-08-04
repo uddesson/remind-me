@@ -58,6 +58,7 @@ export default class AddReminder extends Component {
         />
 
         <DatePickerIOS
+          minimumDate={new Date()}
           minuteInterval={1}
           date={this.state.time}
           onDateChange={this.setDate}
