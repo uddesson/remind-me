@@ -11,19 +11,21 @@ const TOGGLE_MODAL = 'remindme/reminders/TOGGLE_MODAL';
 // Reducer
 const INITIAL_STATE = {
   showModal: false,
-  reminders: []
+  reminders: null,
 };
 
 export const remindersReducer = (state: any = INITIAL_STATE, action) => {
   switch (action.type) {
     case LOAD_REMINDERS_START:
+      console.log(action.payload)
       return {
         ...state,
+        reminders: action.payload,
       };
     case ADD_REMINDER:
       return {
         ...state,
-        reminders: reminders.push(action.payload),
+        reminders: action.payload,
       }
     case TOGGLE_MODAL:
       return {
@@ -37,6 +39,6 @@ export const remindersReducer = (state: any = INITIAL_STATE, action) => {
 
 
 // Action creators
-export const loadReminders = () => ({ type: LOAD_REMINDERS_START, payload });
+export const loadReminders = (reminders) => ({ type: LOAD_REMINDERS_START, payload: reminders });
 export const addReminder = (reminder) => ({ type: ADD_REMINDER, payload: reminder});
 export const toggleModal = () => ({ type: TOGGLE_MODAL });
