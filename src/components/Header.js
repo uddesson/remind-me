@@ -10,7 +10,7 @@ const mapDispatchToProps = dispatch => ({ triggerToggleModal: () => dispatch(tog
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Header extends Component {
   toggleModal = () => {
-    const { triggerToggleModal, showModal } = this.props;
+    const { triggerToggleModal } = this.props;
     triggerToggleModal();
   }
   render() {
