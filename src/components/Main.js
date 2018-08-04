@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
-import { ScrollView } from 'react-native';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import Header from './Header';
 import List from './List';
-import AddModal from '../components/Modal';
+import AddModal from './Modal';
 
 export default class Main extends Component {
   render() {
     return (
       <>
         <AddModal />
-        <ScrollView>
+        <View>
           <Header />
           <List />
-        </ScrollView>
+        </View>
      </>
     );
   }
