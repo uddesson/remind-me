@@ -7,16 +7,47 @@ import { DeleteButton } from './common/Buttons';
 export default class ListItem extends Component {
   render() {
     const { text, time } = this.props;
+
+    /**
+     * Check if the reminder-time has passed (is before now),
+     * and use that false/true variable to render different
+     * textstyles for the listcomponent.
+     */
+    let now = moment().format();
+    let reminderDateHasPassed = moment(time).isBefore(now);
+
+    const renderUpcomingReminder = () => {
+      return(
+        <>
+        <Paragraph>
+            {text}
+        </Paragraph>
+        <SmallPrint>
+          {moment(time).calendar()}
+        </SmallPrint>
+        </>
+      )
+    }
+
+    const renderPassedReminder = () => {
+      return(
+        <>
+        <Paragraph style={styles.passedReminderText}>
+          {text}
+        </Paragraph>
+        <SmallPrint style={styles.passedReminderText}>
+          {moment(time).fromNow()}
+        </SmallPrint>
+        </>
+      )
+    }
+
     return (
       <View style={styles.container}>
 
         <View style={[styles.col_lg, styles.innerContainer]}>
-          <Paragraph>
-            {text}
-          </Paragraph>
-          <SmallPrint>
-            {moment(time).calendar()}
-          </SmallPrint>
+          {!reminderDateHasPassed && renderUpcomingReminder()}
+          {reminderDateHasPassed && renderPassedReminder()}
         </View>
 
         <View style={[styles.col_sm, styles.innerContainer]}>
@@ -49,4 +80,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     width: '20%',
   },
+  passedReminderText: {
+    color: 'rgba(0, 0, 0, 0.3)',
+    fontStyle: 'italic',
+  }
 });
