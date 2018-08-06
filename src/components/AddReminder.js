@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { View, TextInput, TouchableOpacity, DatePickerIOS, StyleSheet, AsyncStorage } from 'react-native';
 import { toggleModal } from '../redux/reminders';
 import { Paragraph } from '../components/common/TextFormats';
+import { UpdateButton } from './common/Buttons';
 
 const mapStateToProps = state => ({ showModal: state.reminders.showModal });
 const mapDispatchToProps = dispatch => ({ triggerToggleModal: () => dispatch(toggleModal()) });
@@ -47,6 +48,7 @@ export default class AddReminder extends Component {
   render(){
     return(
       <View style={styles.container}>
+
         <TextInput
           style={{height: 40, padding: 10, marginTop: 60, borderColor: 'gray', borderWidth: 1}}
           onChangeText={(text) => this.setState({text})}
@@ -62,11 +64,7 @@ export default class AddReminder extends Component {
           onDateChange={this.setDate}
         />
 
-        <TouchableOpacity style={styles.button} onPress={() => {this.createReminder()}}>
-          <Paragraph style={{color: '#fff'}}>
-            Do reminder stuff.
-          </Paragraph>
-        </TouchableOpacity>
+        <UpdateButton onPress={() => {this.createReminder()}} text={'Done'} />
 
       </View>
     );
@@ -79,9 +77,4 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
   },
-  button: {
-    backgroundColor: 'tomato',
-    padding: 14,
-    borderRadius: 5,
-  }
 })
