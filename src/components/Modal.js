@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Modal from "react-native-modal";
+import Modal from 'react-native-modal';
 import { toggleModal } from '../redux/reminders';
 import AddReminder from './AddReminder';
 
