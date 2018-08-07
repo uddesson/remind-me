@@ -1,4 +1,4 @@
-# Just Remind me
+# Just Remind Me
 
 (WIP). Draft for a dead simple reminder app created with React Native.
 
