@@ -11,4 +11,5 @@ It just lets you add reminders. Nothing. Else.
 
 ### Resources
 * [Moment.js](https://momentjs.com/)
+* [Uuid](https://www.npmjs.com/package/uuid)
 * Structure for Redux is set up using [Ducks](https://github.com/erikras/ducks-modular-redux) modular approach.
