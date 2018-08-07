@@ -9,7 +9,7 @@ export default class Main extends Component {
     return (
       <>
         <AddModal />
-        <View>
+        <View style={{paddingBottom: 120}}>
           <Header />
           <List />
         </View>
