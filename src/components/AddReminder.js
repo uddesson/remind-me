@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, TextInput, TouchableOpacity, DatePickerIOS, StyleSheet, AsyncStorage } from 'react-native';
-import { toggleModal } from '../redux/reminders';
-import { Paragraph } from '../components/common/TextFormats';
+import { View, TextInput, DatePickerIOS, StyleSheet } from 'react-native';
+import uuidv1 from 'uuid/v1';
 import { toggleModal, addReminder } from '../redux/reminders';
 import { UpdateButton } from './common/Buttons';
 
@@ -17,28 +16,19 @@ export default class AddReminder extends Component {
   state = {
     time: new Date(),
     text: undefined,
-    id: null,
-  }
   }
 
   setDate = (newDate) => {
     this.setState({time: newDate})
   }
 
-  getRandomId = () => {
-    let number = Math.floor(Math.random() * (1000 - 0) ) + 0;
-    return number.toString()
-  }
-
   createReminder = () => {
-    let id = this.getRandomId();
-    this.setState({id})
     const { triggerAddReminder } = this.props;
 
     let reminder = {
       time: this.state.time,
       text: this.state.text,
-      id,
+      id: uuidv1(), // Generates a uniqe id
     }
 
     triggerAddReminder(reminder);
@@ -53,6 +43,7 @@ export default class AddReminder extends Component {
           onChangeText={(text) => this.setState({text})}
           placeholder={'Skriv en påminnelse'}
           value={this.state.text}
+          autoCorrect={false}
         />
 
         <DatePickerIOS
