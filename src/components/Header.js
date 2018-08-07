@@ -1,25 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { toggleModal } from '../redux/reminders';
+import { toggleModal, deleteAllReminders } from '../redux/reminders';
 import { HeaderOne } from './common/TextFormats';
 
 const mapStateToProps = state => ({ showModal: state.reminders.showModal });
-const mapDispatchToProps = dispatch => ({ triggerToggleModal: () => dispatch(toggleModal()) });
+const mapDispatchToProps = dispatch => ({
+  triggerToggleModal: () => dispatch(toggleModal()),
+  triggerDeleteAllReminders: () => dispatch(deleteAllReminders())
+});
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Header extends Component {
-  toggleModal = () => {
-    const { triggerToggleModal } = this.props;
-    triggerToggleModal();
-  }
   render() {
+    const { triggerToggleModal, triggerDeleteAllReminders } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.row}>
-          <TouchableOpacity onPress={() => {this.toggleModal()}}>
+
+          <TouchableOpacity style={styles.col} onPress={() => {triggerToggleModal()}}>
             <HeaderOne>Add reminder</HeaderOne>
           </TouchableOpacity>
+
+          <TouchableOpacity style={styles.col} onPress={() => {triggerDeleteAllReminders()}}>
+            <HeaderOne>*Evil laugh*</HeaderOne>
+          </TouchableOpacity>
+
         </View>
       </View>
     );
@@ -38,4 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
   },
+  col: {
+    flex: 1,
+  }
 });
