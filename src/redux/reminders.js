@@ -1,7 +1,6 @@
 // Acions
-const LOAD_REMINDERS_START = 'remindme/reminders/LOAD_REMINDERS_START';
+const DELETE_ALL_REMINDERS = 'remindme/reminders/DELETE_ALL_REMINDERS';
 
-// Single reminder actions
 const ADD_REMINDER = 'remindme/reminders/ADD_REMINDER';
 const UPDATE_REMINDER = 'remindme/reminders/UPDATE_REMINDER';
 const DELETE_REMINDER = 'remindme/reminders/DELETE_REMINDER';
@@ -11,21 +10,33 @@ const TOGGLE_MODAL = 'remindme/reminders/TOGGLE_MODAL';
 // Reducer
 const INITIAL_STATE = {
   showModal: false,
-  reminders: null,
+  reminders: [],
 };
 
 export const remindersReducer = (state: any = INITIAL_STATE, action) => {
   switch (action.type) {
-    case LOAD_REMINDERS_START:
-      console.log(action.payload)
-      return {
-        ...state,
-        reminders: action.payload,
-      };
     case ADD_REMINDER:
+    console.log('adding reminder:', action.payload)
       return {
         ...state,
-        reminders: action.payload,
+        reminders: [...state.reminders, action.payload]
+      }
+    case UPDATE_REMINDER:
+    console.log('updating reminder:', action.payload)
+      return {
+        ...state,
+        // Update. Same as above..?
+      }
+    case DELETE_REMINDER:
+    console.log('deleting reminder:', action.payload)
+      return {
+        ...state,
+        // Delete somehow.
+      }
+    case DELETE_ALL_REMINDERS:
+      return {
+        ...state,
+        reminders: [],
       }
     case TOGGLE_MODAL:
       return {
@@ -39,6 +50,8 @@ export const remindersReducer = (state: any = INITIAL_STATE, action) => {
 
 
 // Action creators
-export const loadReminders = (reminders) => ({ type: LOAD_REMINDERS_START, payload: reminders });
-export const addReminder = (reminder) => ({ type: ADD_REMINDER, payload: reminder});
+export const addReminder = (reminder) => ({ type: ADD_REMINDER, payload: reminder });
+export const updateReminder = (reminder) => ({ type: ADD_REMINDER, payload: reminder });
+export const deleteReminder = (id) => ({ type: ADD_REMINDER, payload: id });
+export const deleteAllReminders = () => ({ type: DELETE_ALL_REMINDERS })
 export const toggleModal = () => ({ type: TOGGLE_MODAL });
