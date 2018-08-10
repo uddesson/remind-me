@@ -4,19 +4,19 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Paragraph, SmallPrint } from './common/TextFormats';
 import { DeleteButton } from './common/Buttons';
-import { deleteReminder } from '../redux/reminders';
+import { updateReminders } from '../redux/reminders';
 
 const mapStateToProps = state => ({
   reminders: state.reminders.reminders,
 });
 const mapDispatchToProps = dispatch => ({
-  triggerDeleteReminder: (reminders) => dispatch(deleteReminder(reminders))
+  triggerUpdateReminders: (reminders) => dispatch(updateReminders(reminders))
 });
 @connect(mapStateToProps, mapDispatchToProps)
 export default class ListItem extends Component {
 
   findIndexToDelete = (id) => {
-    const { reminders, triggerDeleteReminder } = this.props;
+    const { reminders, triggerUpdateReminders } = this.props;
     const newRemindersArray = [...reminders];
 
     for (var i = 0; i < newRemindersArray.length; i++){
@@ -25,7 +25,7 @@ export default class ListItem extends Component {
       }
     }
     // Will set reminders in asyncstorage to new array without the deleted reminder
-    triggerDeleteReminder(newRemindersArray);
+    triggerUpdateReminders(newRemindersArray);
   }
 
   render() {
