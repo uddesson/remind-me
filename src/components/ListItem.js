@@ -1,12 +1,35 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import { Paragraph, SmallPrint } from './common/TextFormats';
 import { DeleteButton } from './common/Buttons';
+import { deleteReminder } from '../redux/reminders';
 
+const mapStateToProps = state => ({
+  reminders: state.reminders.reminders,
+});
+const mapDispatchToProps = dispatch => ({
+  triggerDeleteReminder: (reminders) => dispatch(deleteReminder(reminders))
+});
+@connect(mapStateToProps, mapDispatchToProps)
 export default class ListItem extends Component {
+
+  findIndexToDelete = (id) => {
+    const { reminders, triggerDeleteReminder } = this.props;
+    const newRemindersArray = [...reminders];
+
+    for (var i = 0; i < newRemindersArray.length; i++){
+      if(newRemindersArray[i].id == id){
+        newRemindersArray.splice(i, 1)
+      }
+    }
+    // Will set reminders in asyncstorage to new array without the deleted reminder
+    triggerDeleteReminder(newRemindersArray);
+  }
+
   render() {
-    const { text, time } = this.props;
+    const { id, text, time } = this.props;
 
     /**
      * Check if the reminder-time has passed (is before now),
@@ -51,7 +74,7 @@ export default class ListItem extends Component {
         </View>
 
         <View style={[styles.col_sm, styles.innerContainer]}>
-          <DeleteButton />
+          <DeleteButton deleteReminder={() => {this.findIndexToDelete(id)}}/>
         </View>
 
       </View>

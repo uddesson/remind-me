@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 
 export const DeleteButton = ({ style, ...props }) => (
-  <TouchableOpacity style={[styles.delete, style]} {...props} />
+  <TouchableOpacity style={[styles.delete, style]} {...props} onPress={props.deleteReminder} />
 );
 
 export const UpdateButton = ({ style, ...props }) => (

@@ -28,10 +28,9 @@ export const remindersReducer = (state: any = INITIAL_STATE, action) => {
         // Update. Same as above..?
       }
     case DELETE_REMINDER:
-    console.log('deleting reminder:', action.payload)
       return {
         ...state,
-        // Delete somehow.
+        reminders: action.payload,
       }
     case DELETE_ALL_REMINDERS:
       return {
@@ -53,5 +52,6 @@ export const remindersReducer = (state: any = INITIAL_STATE, action) => {
 export const addReminder = (reminder) => ({ type: ADD_REMINDER, payload: reminder });
 export const updateReminder = (reminder) => ({ type: ADD_REMINDER, payload: reminder });
 export const deleteReminder = (id) => ({ type: ADD_REMINDER, payload: id });
+export const deleteReminder = (reminders) => ({ type: DELETE_REMINDER, payload: reminders });
 export const deleteAllReminders = () => ({ type: DELETE_ALL_REMINDERS })
 export const toggleModal = () => ({ type: TOGGLE_MODAL });
