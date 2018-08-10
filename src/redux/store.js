@@ -7,7 +7,7 @@ import { rootReducer as reducer } from './index';
 const persistConfig = {
   key: 'root',
   storage,
-}
+};
 
 const persistedReducer = persistReducer(persistConfig, reducer);
 const store = createStore(persistedReducer, applyMiddleware(logger));
