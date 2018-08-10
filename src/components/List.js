@@ -12,13 +12,14 @@ export default class List extends Component {
   // Todo: Sort reminders by time
   render() {
     const { reminders } = this.props;
+
     return(
       <ScrollView style={styles.container}>
         <FlatList
           data={reminders}
           keyExtractor={item => item.id}
           renderItem={({item}) =>
-            <ListItem text={item.text} time={item.time} />
+            <ListItem text={item.text} time={item.time} id={item.id} />
           }
         />
       </ScrollView>
