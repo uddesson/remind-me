@@ -51,7 +51,6 @@ export const remindersReducer = (state: any = INITIAL_STATE, action) => {
 // Action creators
 export const addReminder = (reminder) => ({ type: ADD_REMINDER, payload: reminder });
 export const updateReminder = (reminder) => ({ type: ADD_REMINDER, payload: reminder });
-export const deleteReminder = (id) => ({ type: ADD_REMINDER, payload: id });
 export const deleteReminder = (reminders) => ({ type: DELETE_REMINDER, payload: reminders });
 export const deleteAllReminders = () => ({ type: DELETE_ALL_REMINDERS })
 export const toggleModal = () => ({ type: TOGGLE_MODAL });
