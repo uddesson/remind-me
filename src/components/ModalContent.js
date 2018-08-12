@@ -26,6 +26,8 @@ export default class ModalContent extends Component {
   state = {
     time: new Date(this.props.selectedReminder.time) || new Date(),
     text: this.props.selectedReminder.text || null,
+  componentDidMount(){
+    this.checkForSelectedReminder();
   }
 
   handleReminderInput = () => {
@@ -73,6 +75,16 @@ export default class ModalContent extends Component {
       triggerDeselectReminder();
       }
     return;
+  }
+
+  checkForSelectedReminder = () => {
+    const { selectedReminder, reminders } = this.props;
+    if (selectedReminder !== null){
+      const selectedReminderContent = reminders.find(reminder => reminder.id === selectedReminder);
+      const time = new Date(selectedReminderContent.time);
+      const text = selectedReminderContent.text;
+      this.setState({ time, text})
+    }
   }
 
   textInputIsEmpty = () => {
