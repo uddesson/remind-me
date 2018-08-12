@@ -10,7 +10,7 @@ const TOGGLE_MODAL = 'remindme/reminders/TOGGLE_MODAL';
 const INITIAL_STATE = {
   showModal: false,
   reminders: [],
-  selectedReminder: {},
+  selectedReminder: null,
 };
 
 export const remindersReducer = (state: any = INITIAL_STATE, action) => {
@@ -39,7 +39,7 @@ export const remindersReducer = (state: any = INITIAL_STATE, action) => {
     case DESELECT_REMINDER:
     return {
       ...state,
-      selectedReminder: {},
+      selectedReminder: null,
     }
     case TOGGLE_MODAL:
     return {

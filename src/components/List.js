@@ -30,7 +30,7 @@ export default class List extends Component {
           data={reminders}
           keyExtractor={item => item.id}
           renderItem={({item}) =>
-            <TouchableOpacity onPress={() => {this.setSelectedItem(item)}}>
+            <TouchableOpacity onPress={() => {this.setSelectedItem(item.id)}}>
               <ListItem text={item.text} time={item.time} id={item.id} />
             </TouchableOpacity>
           }
