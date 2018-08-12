@@ -24,8 +24,10 @@ export default class ModalContent extends Component {
    * */
 
   state = {
-    time: new Date(this.props.selectedReminder.time) || new Date(),
-    text: this.props.selectedReminder.text || null,
+    time: new Date(),
+    text: null,
+  }
+
   componentDidMount(){
     this.checkForSelectedReminder();
   }
@@ -42,7 +44,7 @@ export default class ModalContent extends Component {
 
   createNewReminder = () => {
     const { triggerAddReminder, selectedReminder, triggerToggleModal } = this.props;
-    if(selectedReminder.id === undefined){
+    if(selectedReminder === null){
       let reminder = {
         time: this.state.time,
         text: this.state.text,
@@ -63,8 +65,8 @@ export default class ModalContent extends Component {
       triggerDeselectReminder
     } = this.props;
 
-    if (selectedReminder.id !== undefined){
-      let index = reminders.indexOf(selectedReminder);
+    if (selectedReminder !== null){
+      const index = reminders.findIndex(reminder => reminder.id === selectedReminder);
       const updatedReminders = [...reminders];
 
       updatedReminders[index].text = this.state.text;
@@ -100,8 +102,9 @@ export default class ModalContent extends Component {
   }
 
   setDate = (newDate) => {
-    this.setState({time: newDate})
+    this.setState({ time: newDate })
   }
+
 
   render(){
     return(
