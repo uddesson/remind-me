@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ScrollView, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { ScrollView, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { selectReminder } from '../redux/reminders';
 import ListItem from './ListItem';
 
