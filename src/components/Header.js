@@ -18,7 +18,7 @@ export default class Header extends Component {
         <View style={styles.row}>
 
           <TouchableOpacity style={styles.col} onPress={() => {triggerToggleModal()}}>
-            <HeaderOne>Add reminder +</HeaderOne>
+            <HeaderOne>+</HeaderOne>
           </TouchableOpacity>
 
         </View>
@@ -29,10 +29,10 @@ export default class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
-    paddingBottom: 30,
+    paddingTop: 40,
+    paddingBottom: 20,
     paddingLeft: 20,
-    backgroundColor: '#475881',
+    backgroundColor: '#89dcd3',
   },
   row: {
     width: '100%',

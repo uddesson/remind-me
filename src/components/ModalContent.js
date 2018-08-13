@@ -19,10 +19,6 @@ const mapDispatchToProps = dispatch => ({
 @connect(mapStateToProps, mapDispatchToProps)
 export default class ModalContent extends Component {
 
-  /** Todo:
-   * Fix issue with empty time on selectedreminder
-   * */
-
   state = {
     time: new Date(),
     text: null,
@@ -109,14 +105,17 @@ export default class ModalContent extends Component {
   render(){
     return(
       <View style={styles.container}>
-
-        <TextInput
-          style={{height: 40, padding: 10, marginTop: 60, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
-          placeholder={'Skriv en påminnelse'}
-          value={this.state.text}
-          autoCorrect={false}
-        />
+        <View style={styles.innerContainer}>
+            <TextInput
+              style={styles.textInput}
+              onChangeText={(text) => this.setState({text})}
+              placeholder={'Write your reminder here...'}
+              value={this.state.text}
+              autoCorrect={false}
+              selectionColor={'#fff'}
+              placeholderTextColor={'rgba(255, 255, 255, 0.7)'}
+            />
+        </View>
 
         <DatePickerIOS
           locale={'sv'}
@@ -136,6 +135,22 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     borderRadius: 10,
-    padding: 20,
+    paddingBottom: 10,
+  },
+  innerContainer: {
+    backgroundColor: '#89dcd3',
+    height: 100,
+    borderRadius: 10,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+  textInput: {
+    fontSize: 16,
+    fontFamily: 'Roboto Mono',
+    alignSelf: 'center',
+    width: '80%',
+    marginTop: 50,
+    marginBottom: 5,
+    color: '#fff'
   },
 })

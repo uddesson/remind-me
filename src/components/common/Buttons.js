@@ -2,7 +2,11 @@ import React from 'react';
 import { TouchableOpacity, StyleSheet, Text } from 'react-native';
 
 export const DeleteButton = ({ style, ...props }) => (
-  <TouchableOpacity style={[styles.delete, style]} {...props} onPress={props.deleteReminder} />
+  <TouchableOpacity style={[styles.delete, style]} {...props} onPress={props.deleteReminder} >
+    <Text style={styles.deleteText}>
+      -
+    </Text>
+  </TouchableOpacity>
 );
 
 export const UpdateButton = ({ style, ...props }) => (
@@ -16,24 +20,32 @@ export const UpdateButton = ({ style, ...props }) => (
 const styles = StyleSheet.create({
   delete: {
     alignSelf: 'center',
-    backgroundColor: 'tomato', // Temp
-    borderRadius: 100, // Temp
-    width: 20, // Temp
-    height: 20, // Temp
+    backgroundColor: '#89dcd3',
+    borderRadius: 100,
+    width: 20,
+    height: 20,
+  },
+  deleteText: {
+    fontFamily: 'Quicksand',
+    textAlign: 'center',
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: '#fff'
   },
   update: {
     marginTop: 20,
     marginBottom: 20,
-    width: '40%',
+    width: '50%',
     alignSelf: 'center',
     borderWidth: 2,
-    borderColor: 'tomato',
+    borderColor: '#89dcd3',
     padding: 10,
     borderRadius: 5,
   },
   updateText: {
+    fontSize: 16,
     textAlign: 'center',
-    color: 'tomato',
+    color: '#89dcd3',
     fontWeight: 'bold',
   },
 });

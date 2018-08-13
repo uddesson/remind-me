@@ -15,17 +15,23 @@ export const SmallPrint = ({ style, ...props }) => (
 
 const styles = StyleSheet.create({
   h1: {
-    fontSize: 16,
+    fontSize: 38,
     color: '#fff',
-    fontWeight: 'bold',
+    fontWeight: '700',
+    fontFamily: 'Roboto'
   },
   paragraph: {
     fontSize: 14,
+    fontWeight: '400',
+    letterSpacing: 0.2,
     color: '#2d2d2d',
+    lineHeight: 20,
+    fontFamily: 'Roboto',
   },
   smallprint: {
-    marginTop: 2,
-    color: 'rgba(0, 0, 0, 0.5)',
+    marginTop: 1,
+    color: 'rgba(0, 0, 0, 0.4)',
     fontSize: 13,
+    fontFamily: 'Roboto Mono',
   },
 });
