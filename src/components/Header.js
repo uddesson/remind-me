@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import { toggleModal, deleteAllReminders } from '../redux/reminders';
+import { toggleModal } from '../redux/reminders';
 import { HeaderOne } from './common/TextFormats';
 
 const mapStateToProps = state => ({ showModal: state.reminders.showModal });
