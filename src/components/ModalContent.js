@@ -40,6 +40,7 @@ export default class ModalContent extends Component {
 
   createNewReminder = () => {
     const { triggerAddReminder, selectedReminder, triggerToggleModal } = this.props;
+
     if(selectedReminder === null){
       let reminder = {
         time: this.state.time,
@@ -119,7 +120,7 @@ export default class ModalContent extends Component {
 
         <DatePickerIOS
           locale={'sv'}
-          minuteInterval={1}
+          minuteInterval={5}
           date={this.state.time}
           onDateChange={this.setDate}
         />
