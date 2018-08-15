@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import moment from 'moment';
-import { selectReminder, updateReminders } from '../redux/reminders';
+import { selectReminder, passedReminders, upcomingReminders } from '../redux/reminders';
 import ListItem from './ListItem';
 
 const mapStateToProps = state => ({
-  reminders: state.reminders.reminders,
+  upcomingReminders: upcomingReminders(state),
+  passedReminders: passedReminders(state),
 });
 const mapDispatchToProps = dispatch => ({
   triggerSelectReminder: (reminder) => dispatch(selectReminder(reminder)),
@@ -20,29 +20,10 @@ export default class List extends Component {
     triggerSelectReminder(reminder);
   }
 
-  // TODO: Turn into selector. Use reselect? https://github.com/reduxjs/reselect
-  sortRemindersByTime = () => {
-    const { reminders, triggerUpdateReminders } = this.props;
-    let sorted = [...reminders];
-    let now = moment();
-
-    sorted.sort(function(a, b){
-      if(moment(a.time).isBefore(now) && moment(a.time).isBefore(b.time)){
-        return a.time < b.time;
-      }
-      if(moment(a.time).isAfter(now) && moment(a.time).isAfter(b.time)){
-        return a.time < b.time;
-      }
-    });
-    triggerUpdateReminders(sorted);
-  }
-
-  componentDidMount(){
-    this.sortRemindersByTime(); // Temp
-  }
-
+  // TODO: Fix issue with selectors
   render() {
-    const { reminders } = this.props;
+    const { upcomingReminders, passedReminders } = this.props;
+    let reminders = upcomingReminders.concat(passedReminders);
     return(
       <ScrollView style={styles.container}>
         <FlatList
